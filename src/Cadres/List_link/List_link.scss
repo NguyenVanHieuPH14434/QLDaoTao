@@ -1,0 +1,25 @@
+#FormTable{
+    display: flex;
+    justify-content: center;
+    #FormTableLink{
+        width: 80%;
+    .Form__title{
+        .LinkFB{
+
+            width: 65%;
+        }  
+        .custom{
+            width: 5%;
+
+        }
+    }    
+    .custom__edit span{
+        cursor: pointer;        
+        padding: 10px 15px;
+    }
+    .NameLinkFB span{
+        overflow-x: auto;
+    }
+    }
+   
+}

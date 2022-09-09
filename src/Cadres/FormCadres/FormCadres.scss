@@ -1,0 +1,42 @@
+#cadres {
+  .customer__care {
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    color: #1869c8;
+    margin: 30px 50px;
+  }
+  #customer__care__form {
+    width: 80vw;
+    margin-bottom: 50px;
+    .info__cadres {
+      .specialized select {
+        height: 25px;
+        width: 62%;
+      }
+      .Name__CVT input,
+      .Department input {
+        padding-left: 5px;
+        height: 25px;
+        width: 65%;
+      }
+    }
+    .info__cadres .Name {
+      margin-right: 10px;
+    }
+    .Link__FB input {
+      padding-left: 5px;
+      margin: 50px 20px 0 10px;
+      width: 77%;
+    }
+    .Link__FB button {
+      border: 1px solid #1378c0;
+      height: 28px;
+      background-color: #1378c0;
+      color: white;
+    }
+    .Link__FB button:hover {
+      background-color: #08436d;
+    }
+  }
+}
