@@ -10,3 +10,11 @@ button {
   .off {
     color: #ccc;
   }
+
+.star__rating{
+    display: flex;
+    justify-content: center;
+    .star{
+        font-size: 18px;
+    }
+}

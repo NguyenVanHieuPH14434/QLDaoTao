@@ -1,25 +1,32 @@
-#FormTable{
-    display: flex;
-    justify-content: center;
-    #FormTableLink{
-        width: 80%;
-    .Form__title{
-        .LinkFB{
-
-            width: 65%;
-        }  
-        .custom{
-            width: 5%;
-
-        }
-    }    
-    .custom__edit span{
-        cursor: pointer;        
-        padding: 10px 15px;
+#FormTable {
+  display: flex;
+  justify-content: center;
+  #FormTableLink {
+    width: 88%;
+    border-radius: 5px;
+    .Form__title {
+      .LinkFB {
+        text-align: center;
+        width: 60%;
+      }
+      .evaluate {
+        text-align: center;
+      }
+      .custom {
+        text-align: center;
+        width: 10%;
+      }
     }
-    .NameLinkFB span{
-        overflow-x: auto;
+    .custom__edit span {
+      cursor: pointer;
+      padding: 10px 35px;
     }
+    .NameLinkFB .NameLink {
+      line-height: 24px;
+      padding-left: 10px;
+      color: rgb(27, 27, 248);
+      font-size: small;
     }
    
+  }
 }

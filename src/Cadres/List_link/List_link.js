@@ -12,8 +12,8 @@ function ListLink(props) {
     return (
         <div id='FormTable'>
             <Table id='FormTableLink' bordered>
-                <thead className='Form__title'>
-                    <tr>
+                <thead  className='Form__title' >
+                    <tr >
                         <th className='LinkFB'>
                             Link FaceBook
                         </th>
@@ -28,7 +28,7 @@ function ListLink(props) {
                 <tbody>
                     { linkFB.map((item, index) => {
                         return (
-                            <tr key={index}>
+                            <tr key={index} className='Row__Table__Link'>
                                 <td className='NameLinkFB'>
                                     <span className='NameLink'>{item.linkfb}</span>
                                 </td>
@@ -51,7 +51,7 @@ function ListLink(props) {
                         </td>
                         <td className='custom__edit'>
                             <span> <FontAwesomeIcon icon={faTrashCan} /> </span>
-                        </td>
+                        </td>   
                     </tr>
                     <tr>
                         <td className='NameLinkFB'>

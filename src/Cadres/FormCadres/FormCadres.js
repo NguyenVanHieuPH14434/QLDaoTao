@@ -11,6 +11,8 @@ function FormCadres(props) {
   return (
     <div id="cadres">
       <div className='customer__care'>Chăm sóc khác hàng</div>
+      <div className='customer__line'></div>
+      <div className='customer__clock'><Clock/></div>
       <Container id='customer__care__form'>
         <Row xs={12} className='info__cadres'>
           <Col xs={4} className='Name__CVT'>
@@ -35,8 +37,8 @@ function FormCadres(props) {
         </Row>
         <div className='Link__FB'>
             <span>Link FaceBook</span>
-            <input id='More__Link__FB' name='linkfb' value={link.linkfb}  onChange={(e)=>{onChangeLink(e)}}/>
-        <button onClick={handleButtonMore}>Thêm Mới</button>
+            <input id='More__Link__FB' placeholder='Thêm link facebook...' name='linkfb' value={link.linkfb}  onChange={(e)=>{onChangeLink(e)}}/>
+        <button onClick={handleButtonMore}>Thêm</button>
         </div>
         </Container>
        
