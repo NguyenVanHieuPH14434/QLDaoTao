@@ -25,7 +25,7 @@ function Cadres() {
 
     return (
         <div style={{display:'flex', justifyContent:'center', }}>
-        <div style={{marginTop:'50px', border:'1px solid rgb(167, 164, 164)',minWidth:" 90vw", borderRadius:'8px', boxShadow:'rgb(167 164 164) -1px -3px 20px 0px'}} >
+        <div style={{minHeight: '760px' , marginTop:'50px', border:'1px solid rgb(167, 164, 164)',minWidth:" 90vw", borderRadius:'8px', boxShadow:'rgb(167 164 164) -1px -3px 20px 0px'}} >
             <FormCadres onChangeLink={onChangeLink} handleButtonMore={handleButtonMore} link={link} />
             <ListLink dataLinkFB={dataLinkFB} linkFB={linkFB} openTableLink={openTableLink}  />
         </div>

@@ -30,9 +30,25 @@
         height: 25px;
         width: 65%;
       }
+      .Name__CVT {
+          select {
+            width: 100px;
+            option {
+              text-align: center;
+            }
+          }
+      }
     }
     .info__cadres .Name {
       margin-right: 10px;
+    }
+    .Department{
+      select {
+        min-width: 200px;
+        option {
+          // text-align: center;
+        }
+      }
     }
     .Link__FB input {
       padding-left: 5px;

@@ -17,11 +17,23 @@ function FormCadres(props) {
         <Row xs={12} className='info__cadres'>
           <Col xs={4} className='Name__CVT'>
             <span className='Name'>Tên CTV</span>
-            <input></input>
+            <select>
+              <option></option>
+              <option>CTV 1</option>
+              <option>CTV 2</option>
+              <option>CTV 3</option>
+              <option>CTV 4</option>
+              <option>CTV 5</option>
+            </select> 
           </Col >
           <Col xs={4} className='Department'>
             <span className='Name'>Phòng Ban</span>
-            <input></input>
+            <select>
+              <option></option>
+              <option>Phòng hành chính</option>
+              <option>Phòng nhân sự</option>
+              <option>Phòng tài chính</option>
+            </select> 
           </Col >
           <Col xs={4} className='specialized'>
             <span className='Name'>Chuyên Ngành</span>
