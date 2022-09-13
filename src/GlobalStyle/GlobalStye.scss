@@ -1,0 +1,71 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+}
+body{
+    font-family: 'ProximaNova',sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: var(--text-color);
+    overflow-y: overlay;
+    background-color: #f4f6f9;
+}
+a[href]{
+    color:var(--text-color);
+    text-decoration: none;
+}
+:root{
+    --text:#28b76b
+}
+//custom type tooltip
+body{
+    overflow-y:unset;
+    overflow-x:hidden;
+    .tippy-box{
+        background-color: rgba(84, 84, 84, 0.92);
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+    }
+    .tippy-arrow{
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+    .tippy-content{
+        padding:8px 9px;
+    }
+    .tippy-box[data-placement^='bottom'] > .tippy-arrow:before{
+        top: -8px;
+    }
+}
+// scrollbar
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .15);
+}
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .15);
+}
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import './App.scss';
-import Cadres from "./Cadres/Cadres";
+import Cadres from "../Modules/Cadres/Cadres";
 function App() {
   return (
    <>

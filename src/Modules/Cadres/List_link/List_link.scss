@@ -1,0 +1,71 @@
+.Table {
+  position: relative;
+  height: 500px;
+  #FormTable {
+    display: flex;
+    justify-content: center;
+    #FormTableLink {
+      width: 88%;
+      border-radius: 5px;
+      .Form__title {
+        .LinkFB {
+          text-align: center;
+          width: 60%;
+        }
+        .evaluate {
+          text-align: center;
+        }
+        .custom {
+          text-align: center;
+          width: 10%;
+        }
+      }
+      .custom__edit span {
+        cursor: pointer;
+        padding: 10px 35px;
+      }
+      .NameLinkFB .NameLink {
+        line-height: 24px;
+        padding-left: 10px;
+        color: rgb(27, 27, 248);
+        font-size: small;
+      }
+
+      // .paginationDisabled a {
+      //   color: grey;
+      //   background-color: grey;
+      // }
+    }
+  }
+  .paginationBttns {
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: right;
+    margin-top: 20px;
+  }
+  .pagination {
+    position: absolute;
+    bottom: 30px ;
+    right: 20px;
+    .paginationBttns a {
+      padding: 10px;
+      margin: 8px;
+      border-radius: 5px;
+      border: 1px solid #000;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .paginationBttns a:hover {
+      color: white;
+      background-color: #ccc;
+    }
+
+    .paginationActive a {
+      color: white;
+      background-color: #ccc;
+    }
+  }
+}

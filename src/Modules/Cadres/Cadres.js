@@ -14,7 +14,8 @@ function Cadres() {
       console.log(link)
     }
     const handleButtonMore = () => {
-        setLinkFB([...linkFB,  link ])
+        setLinkFB([ link ,...linkFB ])
+        setLink({linkfb: ""})
     }
     useEffect(() => {
         localStorage.setItem('linkFaceBook', JSON.stringify(linkFB));

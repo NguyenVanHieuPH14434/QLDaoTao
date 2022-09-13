@@ -1,7 +1,7 @@
 import React from 'react';
 import './FormCadres.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Clock from '../../Share/clock/clock';
+import Clock from '../../../Shared/clock/clock';
 import { Button, Col, Row, Container } from 'reactstrap'
 function FormCadres(props) {
   const {onChangeLink, handleButtonMore, link} = props
