@@ -3,12 +3,12 @@ import "./List_link.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { faTrashCan, faCopy } from "@fortawesome/free-regular-svg-icons";
 import StarRating from "../../../Shared/StarRating/StarRating";
 // import { Pagination, PaginationItem, PaginationLink } from "reactstrap"
 import ReactPaginate from "react-paginate";
 function ListLink(props) {
-  const { linkFB } = props;
+  const { linkFB, dataFB } = props;
   const [pageNumber, setPageNumber] = useState(0);
 
   const usersPerPage = 7;
@@ -18,6 +18,20 @@ function ListLink(props) {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+
+ const Copylink = (id) =>{
+   let clipBoard = dataFB[id].linkfb;
+   navigator.clipboard.writeText(clipBoard);
+  //  let htmlCopy = document.getElementsByClassName("iconCopy");
+  //  htmlCopy[id].style.color="green"
+   setTimeout(()=>{
+    let htmlCopy = document.getElementsByClassName("iconCopy");
+    htmlCopy[id].style.color="black"
+   },300);
+    let htmlCopy = document.getElementsByClassName("iconCopy");
+    htmlCopy[id].style.color="green"
+  }
+  
 
   return (
     <div className="Table" >
@@ -37,7 +51,8 @@ function ListLink(props) {
                 return (
                   <tr key={index} className="Row__Table__Link">
                     <td className="NameLinkFB">
-                      <span className="NameLink">{item.linkfb}</span>
+                      <input className="NameLink" value={item.linkfb}/>  
+                      <span className="iconCopy"  onClick={e=>Copylink(index)}> <FontAwesomeIcon icon={faCopy} id="Copy" /> </span>
                     </td>
                     <td>
                       <StarRating />

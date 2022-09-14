@@ -5,7 +5,7 @@ import Clock from '../../../Shared/clock/clock';
 import { Button, Col, Row, Container } from 'reactstrap'
 function FormCadres(props) {
   const {onChangeLink, handleButtonMore, link} = props
- const valueFB = document.getElementById("More__Link__FB");
+ 
 
 
   return (
@@ -17,7 +17,7 @@ function FormCadres(props) {
         <Row xs={12} className='info__cadres'>
           <Col xs={4} className='Name__CVT'>
             <span className='Name'>Tên CTV</span>
-            <select>
+            <select name='NameCTV' >
               <option></option>
               <option>CTV 1</option>
               <option>CTV 2</option>
@@ -28,7 +28,7 @@ function FormCadres(props) {
           </Col >
           <Col xs={4} className='Department'>
             <span className='Name'>Phòng Ban</span>
-            <select>
+            <select name='Department'>
               <option></option>
               <option>Phòng hành chính</option>
               <option>Phòng nhân sự</option>
@@ -37,7 +37,7 @@ function FormCadres(props) {
           </Col >
           <Col xs={4} className='specialized'>
             <span className='Name'>Chuyên Ngành</span>
-            <select>
+            <select name='Specialized'>
               <option></option>
               <option>chuyên ngành A</option>
               <option>chuyên ngành B</option>
