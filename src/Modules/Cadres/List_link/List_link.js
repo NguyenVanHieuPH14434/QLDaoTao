@@ -1,38 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./List_link.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faCopy } from "@fortawesome/free-regular-svg-icons";
 import StarRating from "../../../Shared/StarRating/StarRating";
+import axios from 'axios';
 // import { Pagination, PaginationItem, PaginationLink } from "reactstrap"
 import ReactPaginate from "react-paginate";
+import { library } from "@fortawesome/fontawesome-svg-core";
 function ListLink(props) {
-  const { linkFB, dataFB } = props;
+  const {  setLink, link, linkFB, setLinkFB  } = props;
   const [pageNumber, setPageNumber] = useState(0);
-
   const usersPerPage = 7;
   const pagesVisited = pageNumber * usersPerPage;
   const pageCount = Math.ceil(linkFB.length / usersPerPage);
-
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-
+console.log(linkFB)
+  // Copylink fb
  const Copylink = (id) =>{
-   let clipBoard = dataFB[id].linkfb;
+   let clipBoard = linkFB[id].linkfb;
    navigator.clipboard.writeText(clipBoard);
-  //  let htmlCopy = document.getElementsByClassName("iconCopy");
-  //  htmlCopy[id].style.color="green"
+   setLink({ linkfb: "" })
    setTimeout(()=>{
     let htmlCopy = document.getElementsByClassName("iconCopy");
     htmlCopy[id].style.color="black"
-   },300);
+   },200);
     let htmlCopy = document.getElementsByClassName("iconCopy");
     htmlCopy[id].style.color="green"   
-    ///asasassa
   }
   
+  // custom edit (xóa)
+  const CustomEdit = (id)=>{
+    
+  }
 
   return (
     <div className="Table" >
@@ -53,15 +56,15 @@ function ListLink(props) {
                   <tr key={index} className="Row__Table__Link">
                     <td className="NameLinkFB">
                       <input className="NameLink" value={item.linkfb}/>  
-                      <span className="iconCopy"  onClick={e=>Copylink(index)}> <FontAwesomeIcon icon={faCopy} id="Copy" /> </span>
+                      <span className="iconCopy" onClick={e=>{Copylink(index)}} > <FontAwesomeIcon icon={faCopy} id="Copy" /> </span>
                     </td>
                     <td>
                       <StarRating />
                     </td>
-                    <td className="custom__edit">
+                    <td className="custom__edit" onClick={e=>{CustomEdit(index)}} >
                       <span>
                         {" "}
-                        <FontAwesomeIcon icon={faTrashCan} />{" "}
+                        <FontAwesomeIcon icon={faTrashCan} id="TrashCan" />{" "}
                       </span>
                     </td>
                   </tr>

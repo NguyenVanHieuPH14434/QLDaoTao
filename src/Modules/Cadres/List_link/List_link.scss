@@ -24,6 +24,9 @@
         cursor: pointer;
         padding: 10px 35px;
       }
+      .custom__edit:hover #TrashCan{
+        color: red;
+      }
       .NameLinkFB .NameLink {
         border: 0px;
         width: 92%;
@@ -46,6 +49,7 @@
       .iconCopy:hover{
         background-color: #B2BEB5;
       }
+      
       
 
       // .paginationDisabled a {
