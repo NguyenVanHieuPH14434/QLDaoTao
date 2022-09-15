@@ -29,20 +29,25 @@ function Cadres() {
             .catch(err => console.log(err))        
         }
         setLink({ linkfb: "" })
-     
     }
     useEffect(()=>{
         axios.get('http://localhost:8080/api/customer/list').then(
         res=>{
-            setLinkFB(res.data)
-        }).catch(err => console.log(err))
-    
-    },[link])
+            setLinkFB(res.data.docs)
+        }).catch(err => console.log(err)) 
+    },[link,linkFB ])
+    // custom edit (xóa)
+  const CustomEdit = (id)=>{
+    console.log(linkFB[id]._id);
+     axios.delete(`http://localhost:8080/api/customer/delete/${linkFB[id]._id}`)
+     .then(res=>{})
+     .catch(err=>console.log(err))
+    }
     return (
         <div style={{ display: 'flex', justifyContent: 'center', }}>
             <div style={{ minHeight: '760px', marginTop: '50px', border: '1px solid rgb(167, 164, 164)', minWidth: " 90vw", borderRadius: '8px', boxShadow: 'rgb(167 164 164) -1px -3px 20px 0px' }} >
                 <FormCadres onChangeLink={onChangeLink} handleButtonMore={handleButtonMore} link={link} />
-                <ListLink  linkFB={linkFB} openTableLink={openTableLink} setLink={setLink} setLinkFB={setLinkFB} />
+                <ListLink  CustomEdit={CustomEdit} linkFB={linkFB} openTableLink={openTableLink} setLink={setLink} setLinkFB={setLinkFB} />
             </div>
         </div>
     );

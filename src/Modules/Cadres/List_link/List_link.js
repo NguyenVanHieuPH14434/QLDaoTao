@@ -10,7 +10,7 @@ import axios from 'axios';
 import ReactPaginate from "react-paginate";
 import { library } from "@fortawesome/fontawesome-svg-core";
 function ListLink(props) {
-  const {  setLink, link, linkFB, setLinkFB  } = props;
+  const {  setLink, linkFB, CustomEdit } = props;
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 7;
   const pagesVisited = pageNumber * usersPerPage;
@@ -21,7 +21,6 @@ function ListLink(props) {
  
   // Copylink fb
  const Copylink = (id) =>{
-
    let clipBoard = linkFB[id].linkfb;
    navigator.clipboard.writeText(clipBoard);
    setLink({ linkfb: "" })
@@ -31,17 +30,8 @@ function ListLink(props) {
    },200);
     let htmlCopy = document.getElementsByClassName("iconCopy");
     htmlCopy[id].style.color="green"   
-    
-    console.log(clipBoard)
   }
-  // custom edit (xóa)
-  const CustomEdit = (id)=>{
-   axios.delete('http://localhost:8080/api/customer/delete/${_id}',linkFB[id]._id)
-   .then(res=>{})
-   .catch(err=>console.log(err))
-    
-  }
-
+  
   return (
     <div className="Table" >
       <div id="FormTable">
