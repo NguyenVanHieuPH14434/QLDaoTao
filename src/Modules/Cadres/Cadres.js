@@ -14,13 +14,9 @@ function Cadres() {
       console.log(link)
     }
     const handleButtonMore = () => {
-        setLinkFB([ link ,...linkFB ])
+        setLinkFB([ ...linkFB ,link  ])
         setLink({linkfb: ""})
     }
-    useEffect(() => {
-        localStorage.setItem('linkFaceBook', JSON.stringify(linkFB));
-    }, [linkFB])
-    let dataLinkFB = JSON.parse(localStorage.getItem('linkFaceBook'))
 
     // StarRating
 
@@ -28,7 +24,7 @@ function Cadres() {
         <div style={{display:'flex', justifyContent:'center', }}>
         <div style={{minHeight: '760px' , marginTop:'50px', border:'1px solid rgb(167, 164, 164)',minWidth:" 90vw", borderRadius:'8px', boxShadow:'rgb(167 164 164) -1px -3px 20px 0px'}} >
             <FormCadres onChangeLink={onChangeLink} handleButtonMore={handleButtonMore} link={link} />
-            <ListLink dataLinkFB={dataLinkFB} linkFB={linkFB} openTableLink={openTableLink}  />
+            <ListLink linkFB={linkFB} openTableLink={openTableLink}  />
         </div>
         </div>
     );
