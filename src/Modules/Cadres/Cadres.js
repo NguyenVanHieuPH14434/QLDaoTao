@@ -34,7 +34,6 @@ function Cadres() {
     useEffect(()=>{
         axios.get('http://localhost:8080/api/customer/list').then(
         res=>{
-            console.log(res)
             setLinkFB(res.data)
         }).catch(err => console.log(err))
     

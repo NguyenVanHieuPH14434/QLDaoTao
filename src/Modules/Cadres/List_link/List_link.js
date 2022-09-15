@@ -18,10 +18,10 @@ function ListLink(props) {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-console.log(linkFB)
+ 
   // Copylink fb
  const Copylink = (id) =>{
-  
+
    let clipBoard = linkFB[id].linkfb;
    navigator.clipboard.writeText(clipBoard);
    setLink({ linkfb: "" })
@@ -31,10 +31,14 @@ console.log(linkFB)
    },200);
     let htmlCopy = document.getElementsByClassName("iconCopy");
     htmlCopy[id].style.color="green"   
+    
+    console.log(clipBoard)
   }
-  
   // custom edit (xóa)
   const CustomEdit = (id)=>{
+   axios.delete('http://localhost:8080/api/customer/delete/${_id}',linkFB[id]._id)
+   .then(res=>{})
+   .catch(err=>console.log(err))
     
   }
 
@@ -56,7 +60,7 @@ console.log(linkFB)
                 return (
                   <tr key={index} className="Row__Table__Link">
                     <td className="NameLinkFB">
-                      <input className="NameLink" value={item.linkfb}/>  
+                      <input className="NameLink" value={item.linkfb} onChange={e=>{}} disabled/>  
                       <span className="iconCopy" onClick={e=>{Copylink(index)}} > <FontAwesomeIcon icon={faCopy} id="Copy" /> </span>
                     </td>
                     <td>
