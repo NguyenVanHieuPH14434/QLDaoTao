@@ -10,7 +10,7 @@ import axios from 'axios';
 import ReactPaginate from "react-paginate";
 import { library } from "@fortawesome/fontawesome-svg-core";
 function ListLink(props) {
-  const {  setLink, linkFB, CustomEdit } = props;
+  const {  setLink, link, linkFB, HandleDelete  } = props;
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 7;
   const pagesVisited = pageNumber * usersPerPage;
@@ -56,7 +56,7 @@ function ListLink(props) {
                     <td>
                       <StarRating />
                     </td>
-                    <td className="custom__edit" onClick={e=>{CustomEdit(index)}} >
+                    <td className="custom__edit" onClick={e=>{HandleDelete(index)}} >
                       <span>
                         {" "}
                         <FontAwesomeIcon icon={faTrashCan} id="TrashCan" />{" "}
