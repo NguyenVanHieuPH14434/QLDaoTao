@@ -21,6 +21,7 @@ function ListLink(props) {
 console.log(linkFB)
   // Copylink fb
  const Copylink = (id) =>{
+  
    let clipBoard = linkFB[id].linkfb;
    navigator.clipboard.writeText(clipBoard);
    setLink({ linkfb: "" })

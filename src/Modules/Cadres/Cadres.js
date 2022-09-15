@@ -26,8 +26,9 @@ function Cadres() {
             axios.post('http://localhost:8080/api/customer/create', link)
             .then(res => {
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err))        
         }
+        setLink({ linkfb: "" })
      
     }
     useEffect(()=>{
@@ -37,7 +38,7 @@ function Cadres() {
             setLinkFB(res.data)
         }).catch(err => console.log(err))
     
-    },[handleButtonMore])
+    },[link])
     return (
         <div style={{ display: 'flex', justifyContent: 'center', }}>
             <div style={{ minHeight: '760px', marginTop: '50px', border: '1px solid rgb(167, 164, 164)', minWidth: " 90vw", borderRadius: '8px', boxShadow: 'rgb(167 164 164) -1px -3px 20px 0px' }} >
