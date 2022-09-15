@@ -21,7 +21,6 @@ function ListLink(props) {
  
   // Copylink fb
  const Copylink = (id) =>{
-
    let clipBoard = linkFB[id].linkfb;
    navigator.clipboard.writeText(clipBoard);
    setLink({ linkfb: "" })
@@ -39,7 +38,6 @@ function ListLink(props) {
    axios.delete('http://localhost:8080/api/customer/delete/${_id}',linkFB[id]._id)
    .then(res=>{})
    .catch(err=>console.log(err))
-    
   }
 
   return (
