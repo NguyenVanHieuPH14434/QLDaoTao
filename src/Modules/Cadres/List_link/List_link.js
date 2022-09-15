@@ -18,7 +18,7 @@ function ListLink(props) {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
- 
+  console.log("aaa");
   // Copylink fb
  const Copylink = (id) =>{
    let clipBoard = linkFB[id].linkfb;
