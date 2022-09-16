@@ -10,7 +10,6 @@ function Cadres() {
     Department: "",
     Specialized: "",
     linkfb: "",
-    rating: "",
   });
   const [resListInfo, setResListInfo] = useState([]);
   const onChangeLink = (e) => {
@@ -18,37 +17,28 @@ function Cadres() {
     const value = e.target.value;
     setLink({ ...link, [name]: value });
   };
-  // const [check , setCheck ] = useState(false);
-  // const checkExists = () => {
-  //   for(let i = 0 ; i <= listInfo.length ; i++) {
-  //       if(valueFB === listInfo[i].linkfb){
-  //           alert("aaaaaaaa")
-  //       }
-  //   }
-  // }
-  // console.log(checkExists);
-  // console.log( listInfo.filter((item) => item.linkfb === valueFB ));
   const handleButtonMore = () => {
     const valueFB = document.getElementById("More__Link__FB").value;
-    console.log(listInfo);
-    let checkListInfoLink = listInfo.filter((item) => item.linkfb === valueFB);
-    // console.log(checkListInfoLink);
+     let checkLink = listInfo.filter((item) => item.linkfb === valueFB)
+     console.log();
     if (valueFB === "") {
       alert("Hãy nhập Link FaceBook");
+    } 
+    else if (checkLink[0])
+    {
+      alert("link FaceBook đã tồn tại");
     }
-     else if (checkListInfoLink) {
-      alert("Link Facebook đã tồn tại");
-    }
-     else {
+    else {
       axios
         .post("http://localhost:8080/api/customer/create", link)
         .then((res) => {
-          setListInfo([link, ...listInfo]);
+          setListInfo([link ,...listInfo]);
           // console.log(res);
         })
         .catch((err) => console.log(err));
     }
-    setLink({ NameCTV: "" });
+    setLink({ NameCTV: ""});
+    
   };
 
   // get data
@@ -60,11 +50,10 @@ function Cadres() {
       })
       .catch((err) => console.log(err));
   }, []);
-  
   // custom edit (xóa)
-  //   console.log(listInfo);
+//   console.log(listInfo);
   const HandleDelete = async (id) => {
-    console.log(listInfo[id]._id);
+    // console.log(listInfo[id]._id);
     await axios
       .delete(`http://localhost:8080/api/customer/delete/${listInfo[id]._id}`)
       .then((res) => {})
@@ -76,15 +65,14 @@ function Cadres() {
       })
       .catch((err) => console.log(err));
   };
-  console.log(link);
+
   //   search
-  // useEffect(() => {
-  //   if (link.NameCTV === "ALL") {
-  //     setResListInfo(listInfo);
-  //   } else {
-  //     setResListInfo(listInfo.filter((item) => item.NameCTV === link.NameCTV));
-  //   }
-  // }, [link.NameCTV]);
+  useEffect(() => {
+    setResListInfo(
+        listInfo.filter((item) => item.NameCTV ===  link.NameCTV)
+    )
+  }, [link]);
+  // console.log(resListInfo);
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div
@@ -103,7 +91,7 @@ function Cadres() {
           link={link}
         />
         <ListLink
-          resListInfo={resListInfo}
+         resListInfo={resListInfo}
           HandleDelete={HandleDelete}
           listInfo={listInfo}
           openTableLink={openTableLink}
