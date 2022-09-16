@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import './FormCadres.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Clock from '../../../Shared/clock/clock';
@@ -7,8 +7,6 @@ import axios, { Axios } from 'axios';
 function FormCadres(props) {
   const { onChangeLink, handleButtonMore, link } = props
 
-
-  
   return (
     <div id="cadres">
       <div className='customer__care'>Chăm sóc khác hàng</div>
@@ -19,7 +17,7 @@ function FormCadres(props) {
           <Col xs={4} className='Name__CVT'>
             <span className='Name'>Tên CTV</span>
             <select name='NameCTV' onChange={(e) => { onChangeLink(e) }}>
-              <option></option>
+              <option>ALL</option>
               <option>CTV 1</option>
               <option>CTV 2</option>
               <option>CTV 3</option>
@@ -30,7 +28,7 @@ function FormCadres(props) {
           <Col xs={4} className='Department'>
             <span className='Name'>Phòng Ban</span>
             <select name='Department' onChange={(e) => { onChangeLink(e) }}>
-              <option></option>
+              <option>ALL</option>
               <option>Phòng hành chính</option>
               <option>Phòng nhân sự</option>
               <option>Phòng tài chính</option>
@@ -39,7 +37,7 @@ function FormCadres(props) {
           <Col xs={4} className='specialized'>
             <span className='Name'>Chuyên Ngành</span>
             <select name='Specialized' onChange={(e) => { onChangeLink(e) }}>
-              <option></option>
+              <option>ALL</option>
               <option>chuyên ngành A</option>
               <option>chuyên ngành B</option>
               <option>chuyên ngành C</option>
@@ -59,4 +57,4 @@ function FormCadres(props) {
   );
 }
 
-export default FormCadres;
+export default memo(FormCadres);

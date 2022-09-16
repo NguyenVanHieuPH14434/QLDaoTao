@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import "./List_link.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table } from "reactstrap";
@@ -10,34 +10,30 @@ import axios from 'axios';
 import ReactPaginate from "react-paginate";
 import { library } from "@fortawesome/fontawesome-svg-core";
 function ListLink(props) {
-  const {  setLink, link, linkFB, setLinkFB  } = props;
+  const { HandleDelete, listLinkFB, } = props;
+  const [indexStarRating, setIndexStarRating] = useState()
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 7;
   const pagesVisited = pageNumber * usersPerPage;
-  const pageCount = Math.ceil(linkFB.length / usersPerPage);
+  const pageCount = Math.ceil(listLinkFB.length / usersPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
- 
   // Copylink fb
- const Copylink = (id) =>{
-   let clipBoard = linkFB[id].linkfb;
-   navigator.clipboard.writeText(clipBoard);
-   setLink({ linkfb: "" })
-   setTimeout(()=>{
-    let htmlCopy = document.getElementsByClassName("iconCopy");
-    htmlCopy[id].style.color="black"
-   },200);
-    let htmlCopy = document.getElementsByClassName("iconCopy");
-    htmlCopy[id].style.color="green"   
-    
-    console.log(clipBoard)
+  const HandleCopylink = (id) => {
+    let clipBoard = listLinkFB[id].linkfb;
+    navigator.clipboard.writeText(clipBoard);
   }
-  // custom edit (xóa)
-  const CustomEdit = (id)=>{
-   axios.delete('http://localhost:8080/api/customer/delete/${_id}',linkFB[id]._id)
-   .then(res=>{})
-   .catch(err=>console.log(err))
+
+  // StarRating
+  const handleRating = (i) => {
+    let update = listLinkFB[i]
+    let data = { ...update, StarRating: indexStarRating };
+    axios.post(`http://localhost:8080/api/customer/update/${listLinkFB[i]._id}`, data).then(
+      res => {
+        console.log(res.data);
+      }
+    )
   }
 
   return (
@@ -52,19 +48,21 @@ function ListLink(props) {
             </tr>
           </thead>
           <tbody>
-            {linkFB
-              .slice(pagesVisited, pagesVisited + usersPerPage)
+            {listLinkFB
               .map((item, index) => {
                 return (
                   <tr key={index} className="Row__Table__Link">
                     <td className="NameLinkFB">
-                      <input className="NameLink" value={item.linkfb} onChange={e=>{}} disabled/>  
-                      <span className="iconCopy" onClick={e=>{Copylink(index)}} > <FontAwesomeIcon icon={faCopy} id="Copy" /> </span>
+                      <input className="NameLink" value={item.linkfb} disabled />
+                      <span className="iconCopy" onClick={e => { HandleCopylink(index) }}> <FontAwesomeIcon icon={faCopy} id="Copy" /> </span>
                     </td>
                     <td>
-                      <StarRating />
+                      <span> <StarRating setIndexStarRating={setIndexStarRating} listLinkFB={listLinkFB} /></span>
                     </td>
-                    <td className="custom__edit" onClick={e=>{CustomEdit(index)}} >
+                    <td>
+                      <button onClick={e => { handleRating(index) }}>đánh giá</button>
+                    </td>
+                    <td className="custom__edit" onClick={e => { HandleDelete(index) }} >
                       <span>
                         {" "}
                         <FontAwesomeIcon icon={faTrashCan} id="TrashCan" />{" "}
@@ -72,7 +70,7 @@ function ListLink(props) {
                     </td>
                   </tr>
                 );
-              })}
+              }).slice(pagesVisited, pagesVisited + usersPerPage)}
 
             <tr>
               <td colSpan={3}></td>
@@ -96,4 +94,4 @@ function ListLink(props) {
     </div>
   );
 }
-export default ListLink;
+export default memo(ListLink);
