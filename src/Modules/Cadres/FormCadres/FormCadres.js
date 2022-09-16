@@ -24,7 +24,7 @@ function FormCadres(props) {
               <option>CTV 4</option>
               <option>CTV 5</option>
             </select>
-          </Col >
+          </Col>
           <Col xs={4} className='Department'>
             <span className='Name'>Phòng Ban</span>
             <select name='Department' onChange={(e) => { onChangeLink(e) }}>
@@ -33,22 +33,22 @@ function FormCadres(props) {
               <option>Phòng nhân sự</option>
               <option>Phòng tài chính</option>
             </select>
-          </Col >
+          </Col>
           <Col xs={4} className='specialized'>
             <span className='Name'>Chuyên Ngành</span>
             <select name='Specialized' onChange={(e) => { onChangeLink(e) }}>
               <option>ALL</option>
-              <option>chuyên ngành A</option>
-              <option>chuyên ngành B</option>
-              <option>chuyên ngành C</option>
-              <option>chuyên ngành D</option>
-              <option>chuyên ngành E</option>
+              <option>Công nghệ thông tin </option>
+              <option>Marketing</option>
+              <option>Quản lý nhân sự</option>
+              <option>Thiết kế</option>
+              <option>Kế toán</option>
             </select>
           </Col >
         </Row>
         <div className='Link__FB'>
           <span>Link FaceBook</span>
-          <input id='More__Link__FB' placeholder='Thêm link facebook...' name='linkfb' value={link.linkfb} onChange={(e) => { onChangeLink(e) }} />
+          <input id='More__Link__FB' placeholder='Thêm link facebook...' name='linkfb' value={link.linkfb ? link.linkfb : ""} onChange={(e) => { onChangeLink(e) }} />
           <button onClick={handleButtonMore}>Thêm</button>
         </div>
       </Container>
