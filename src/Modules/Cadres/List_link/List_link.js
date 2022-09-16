@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,memo } from "react";
 import "./List_link.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table } from "reactstrap";
@@ -10,18 +10,22 @@ import axios from 'axios';
 import ReactPaginate from "react-paginate";
 import { library } from "@fortawesome/fontawesome-svg-core";
 function ListLink(props) {
-  const {  setLink, link, linkFB, HandleDelete  } = props;
+  const {  setLink, link, listInfo, HandleDelete ,resListInfo  } = props;
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 7;
   const pagesVisited = pageNumber * usersPerPage;
-  const pageCount = Math.ceil(linkFB.length / usersPerPage);
+  const pageCount = Math.ceil(listInfo.length / usersPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-  console.log("aaa");
   // Copylink fb
+ 
+  // const valueFB = document.getElementById("More__Link__FB").value;
+
+  console.log(resListInfo);
+  // console.log("aaaa");
  const Copylink = (id) =>{
-   let clipBoard = linkFB[id].linkfb;
+   let clipBoard = listInfo[id].linkfb;
    navigator.clipboard.writeText(clipBoard);
    setLink({ linkfb: "" })
    setTimeout(()=>{
@@ -31,7 +35,6 @@ function ListLink(props) {
     let htmlCopy = document.getElementsByClassName("iconCopy");
     htmlCopy[id].style.color="green"   
   }
-  
   return (
     <div className="Table" >
       <div id="FormTable">
@@ -44,9 +47,7 @@ function ListLink(props) {
             </tr>
           </thead>
           <tbody>
-            {linkFB
-              .slice(pagesVisited, pagesVisited + usersPerPage)
-              .map((item, index) => {
+            {listInfo.map((item, index) => {
                 return (
                   <tr key={index} className="Row__Table__Link">
                     <td className="NameLinkFB">
@@ -54,7 +55,7 @@ function ListLink(props) {
                       <span className="iconCopy" onClick={e=>{Copylink(index)}} > <FontAwesomeIcon icon={faCopy} id="Copy" /> </span>
                     </td>
                     <td>
-                      <StarRating />
+                      <StarRating indexStart />
                     </td>
                     <td className="custom__edit" onClick={e=>{HandleDelete(index)}} >
                       <span>
@@ -64,7 +65,11 @@ function ListLink(props) {
                     </td>
                   </tr>
                 );
-              })}
+              })
+
+              
+              .slice(pagesVisited, pagesVisited + usersPerPage) 
+              }
 
             <tr>
               <td colSpan={3}></td>
@@ -88,4 +93,4 @@ function ListLink(props) {
     </div>
   );
 }
-export default ListLink;
+export default memo(ListLink);

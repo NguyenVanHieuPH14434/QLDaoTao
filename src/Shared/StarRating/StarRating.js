@@ -3,6 +3,11 @@ import './StarRating.scss'
 const StarRating = () => {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
+
+    const handleClickStar = (index) => {
+      setRating(index)
+      console.log(index);
+    }
     return (
       <div className="star__rating">
         {[...Array(5)].map((star, index) => {
@@ -12,7 +17,7 @@ const StarRating = () => {
               type="button"
               key={index}
               className={index <= (hover || rating) ? "on" : "off"}
-              onClick={() => setRating(index)}
+              onClick={(é) => handleClickStar(index)}
               onMouseEnter={() => setHover(index)}
               onMouseLeave={() => setHover(rating)}
             >

@@ -19,38 +19,38 @@ function FormCadres(props) {
           <Col xs={4} className='Name__CVT'>
             <span className='Name'>Tên CTV</span>
             <select name='NameCTV' onChange={(e) => { onChangeLink(e) }}>
-              <option></option>
+              <option>ALL</option>
               <option>CTV 1</option>
               <option>CTV 2</option>
               <option>CTV 3</option>
               <option>CTV 4</option>
               <option>CTV 5</option>
             </select>
-          </Col >
+          </Col>
           <Col xs={4} className='Department'>
             <span className='Name'>Phòng Ban</span>
             <select name='Department' onChange={(e) => { onChangeLink(e) }}>
-              <option></option>
+              <option>ALL</option>
               <option>Phòng hành chính</option>
               <option>Phòng nhân sự</option>
               <option>Phòng tài chính</option>
             </select>
-          </Col >
+          </Col>
           <Col xs={4} className='specialized'>
             <span className='Name'>Chuyên Ngành</span>
             <select name='Specialized' onChange={(e) => { onChangeLink(e) }}>
-              <option></option>
-              <option>chuyên ngành A</option>
-              <option>chuyên ngành B</option>
-              <option>chuyên ngành C</option>
-              <option>chuyên ngành D</option>
-              <option>chuyên ngành E</option>
+              <option>ALL</option>
+              <option>Công nghệ thông tin </option>
+              <option>Marketing</option>
+              <option>Quản lý nhân sự</option>
+              <option>Thiết kế</option>
+              <option>Kế toán</option>
             </select>
           </Col >
         </Row>
         <div className='Link__FB'>
           <span>Link FaceBook</span>
-          <input id='More__Link__FB' placeholder='Thêm link facebook...' name='linkfb' value={link.linkfb} onChange={(e) => { onChangeLink(e) }} />
+          <input id='More__Link__FB' placeholder='Thêm link facebook...' name='linkfb' value={link.linkfb ? link.linkfb : ""} onChange={(e) => { onChangeLink(e) }} />
           <button onClick={handleButtonMore}>Thêm</button>
         </div>
       </Container>
