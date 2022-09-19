@@ -12,12 +12,14 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 function ListLink(props) {
   const { setLink, HandleDelete, setValueDate, valueDate,resListInfo, handleFilter, handleAllLink} = props;
   const [pageNumber, setPageNumber] = useState(0);
-  const usersPerPage = 7;
+  const usersPerPage = 6;
+  const [data, setData] = useState(listInfo);
   const pagesVisited = pageNumber * usersPerPage;
   const pageCount = Math.ceil(resListInfo.length / usersPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+
   const Copylink = (id) => {
     let clipBoard = resListInfo[id].linkfb;
     navigator.clipboard.writeText(clipBoard);
@@ -45,6 +47,7 @@ function ListLink(props) {
             </tr>
           </thead>
           <tbody>
+<<<<<<< HEAD
             {resListInfo.length? resListInfo
               .map((item, index) => {
                 return (
@@ -89,6 +92,94 @@ function ListLink(props) {
               .slice(pagesVisited, pagesVisited + usersPerPage)
               : <h4 style={{ marginLeft:'5%' }}>Chưa có dữ liệu</h4>
               }
+=======
+            {
+              link.NameCTV === '' ? 
+              (listInfo.map((item, index) => {
+                    return (
+                      <tr key={index} className="Row__Table__Link">
+                        <td className="NameLinkFB">
+                          <input
+                            className="NameLink"
+                            value={item.linkfb}
+                            onChange={(e) => {}}
+                            disabled
+                          />
+                          <span
+                            className="iconCopy"
+                            onClick={(e) => {
+                              Copylink(index);
+                            }}
+                          >
+                            {" "}
+                            <FontAwesomeIcon icon={faCopy} id="Copy" />{" "}
+                          </span>
+                        </td>
+                        <td>
+                          <StarRating indexStart />
+                        </td>
+                        <td
+                          className="custom__edit"
+                          onClick={(e) => {
+                            HandleDelete(index);
+                          }}
+                        >
+                          <span>
+                            {" "}
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              id="TrashCan"
+                            />{" "}
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  }))
+              : (data.map((item, index) => {
+                    return (
+                      <tr key={index} className="Row__Table__Link">
+                        <td className="NameLinkFB">
+                          <input
+                            className="NameLink"
+                            value={item.linkfb}
+                            onChange={(e) => {}}
+                            disabled
+                          />
+                          <span
+                            className="iconCopy"
+                            onClick={(e) => {
+                              Copylink(index);
+                            }}
+                          >
+                            {" "}
+                            <FontAwesomeIcon icon={faCopy} id="Copy" />{" "}
+                          </span>
+                        </td>
+                        <td>
+                          <StarRating indexStart />
+                        </td>
+                        <td
+                          className="custom__edit"
+                          onClick={(e) => {
+                            HandleDelete(index);
+                          }}
+                        >
+                          <span>
+                            {" "}
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              id="TrashCan"
+                            />{" "}
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  })
+                  
+
+                  ).slice(pagesVisited, pagesVisited + usersPerPage)}
+
+>>>>>>> 56e159249e531ff66cb2af7283da4459cf21685f
             <tr>
               <td colSpan={3}></td>
             </tr>
@@ -112,4 +203,8 @@ function ListLink(props) {
     </div>
   );
 }
+<<<<<<< HEAD
 export default memo(ListLink);
+=======
+export default ListLink;
+>>>>>>> 56e159249e531ff66cb2af7283da4459cf21685f

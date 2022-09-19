@@ -19,10 +19,17 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-paginate": "^8.1.3",
+<<<<<<< HEAD
     "react-rating": "^2.0.5",
     "react-rating-stars-component": "^2.2.0",
+=======
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.4.0",
+>>>>>>> 56e159249e531ff66cb2af7283da4459cf21685f
     "react-scripts": "5.0.1",
+    "react-select-search": "^4.1.0",
     "reactstrap": "^9.1.4",
+    "redux": "^4.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -59,15 +59,22 @@ function FormCadres(props) {
               <option>Thiết kế</option>
               <option>Kế toán</option>
             </select>
-          </Col >
+          </Col>
         </Row>
-        <div className='Link__FB'>
+        <div className="Link__FB">
           <span>Link FaceBook</span>
-          <input id='More__Link__FB' placeholder='Thêm link facebook...' name='linkfb' value={link.linkfb ? link.linkfb : ""} onChange={(e) => { onChangeLink(e) }} />
+          <input
+            id="More__Link__FB"
+            placeholder="Thêm link facebook..."
+            name="linkfb"
+            value={link.linkfb ? link.linkfb : ""}
+            onChange={(e) => {
+              onChangeLink(e);
+            }}
+          />
           <button onClick={handleButtonMore}>Thêm</button>
         </div>
       </Container>
-
     </div>
   );
 }

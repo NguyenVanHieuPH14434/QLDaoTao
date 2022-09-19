@@ -91,13 +91,8 @@ function Cadres() {
 
       }
     }).filter((item)=>{
-      if(valueDepartment){
-        return item.Department === valueDepartment
-
-      }
-    }).filter((item)=>{
-      if(valueSpecialized){
-        return item.Specialized === valueSpecialized
+      if(confirmDateFilter){
+        return item.ctime === confirmDateFilter
 
       }
     })
