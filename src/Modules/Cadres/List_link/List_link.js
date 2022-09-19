@@ -4,47 +4,37 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Table } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faCopy } from "@fortawesome/free-regular-svg-icons";
-// import StarRating from "../../../Shared/StarRating/StarRating";
-import axios from 'axios';
+import StarRating from "../../../Shared/StarRating/StarRating";
+import axios from "axios";
 // import { Pagination, PaginationItem, PaginationLink } from "reactstrap"
 import ReactPaginate from "react-paginate";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import ReactStars from "react-rating-stars-component";
 function ListLink(props) {
-  const { HandleDelete, listInfo, } = props;
-  const [indexStarRating, setIndexStarRating] = useState()
+  const { setLink, HandleDelete, setValueDate, valueDate,resListInfo, handleFilter, handleAllLink} = props;
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 7;
   const pagesVisited = pageNumber * usersPerPage;
-  const pageCount = Math.ceil(listInfo.length / usersPerPage);
+  const pageCount = Math.ceil(resListInfo.length / usersPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-  // Copylink fb
-  const HandleCopylink = (id) => {
-    let clipBoard = listInfo[id].linkfb;
+  const Copylink = (id) => {
+    let clipBoard = resListInfo[id].linkfb;
     navigator.clipboard.writeText(clipBoard);
-  }
-
-  // StarRating
-  const handleRating = (i) => {
-    let update = listInfo[i]
-    let data = { ...update, StarRating: indexStarRating };
-    axios.post(`http://localhost:8080/api/customer/update/${listInfo[i]._id}`, data).then(
-      res => {
-        console.log(res.data);
-      }
-    )
-  }
-  const firstExample = {
-    size: 20,
-    count: 5,
-    value: 0,
-    edit: true,
-
+    setLink({ linkfb: "" });
   };
+
+
+
   return (
-    <div className="Table" >
+    <div className="Table">
+      <span className="Filter__ListLink">
+        <input type='date' id="dateTime"  onChange={e => setValueDate(e.target.value)} value={valueDate}></input>
+        <button onMouseUp={handleFilter}>Lọc</button>
+        <button onMouseUp={handleAllLink}>ALL link</button>
+
+      </span>
+
       <div id="FormTable">
         <Table id="FormTableLink" bordered>
           <thead className="Form__title">
@@ -55,33 +45,54 @@ function ListLink(props) {
             </tr>
           </thead>
           <tbody>
-            {listInfo.map((item, index) => {
-              return (
-                <tr key={index} className="Row__Table__Link">
-                  <td className="NameLinkFB">
-                    <input className="NameLink" value={item.linkfb} disabled />
-                    <span className="iconCopy" onClick={e => { HandleCopylink(index) }}> <FontAwesomeIcon icon={faCopy} id="Copy" /> </span>
-                  </td>
-                  <td>
-                    {/* <span> <StarRating setIndexStarRating={setIndexStarRating} /></span> */}
-                    <span> <ReactStars {...firstExample} /></span>
-                  </td>
-                  <td>
-                    <button onClick={e => { handleRating(index) }}>đánh giá</button>
-                  </td>
-                  <td className="custom__edit" onClick={e => { HandleDelete(index) }} >
-                    <span>
-                      {" "}
-                      <FontAwesomeIcon icon={faTrashCan} id="TrashCan" />{" "}
-                    </span>
-                  </td>
-                </tr>
-              );
-            }).slice(pagesVisited, pagesVisited + usersPerPage)}
-
+            {resListInfo.length? resListInfo
+              .map((item, index) => {
+                return (
+                  <tr key={index} className="Row__Table__Link">
+                    <td className="NameLinkFB">
+                      <input
+                        className="NameLink"
+                        value={item.linkfb}
+                        onChange={(e) => { }}
+                        disabled
+                      />
+                      <span
+                        className="iconCopy"
+                        onClick={(e) => {
+                          Copylink(index);
+                        }}
+                      >
+                        {" "}
+                        <FontAwesomeIcon icon={faCopy} id="Copy" />{" "}
+                      </span>
+                    </td>
+                    <td>
+                      <StarRating indexStart />
+                    </td>
+                    <td
+                      className="custom__edit"
+                      onMouseUp={(e) => {
+                        HandleDelete(index);
+                      }}
+                    >
+                      <span>
+                        {" "}
+                        <FontAwesomeIcon
+                          icon={faTrashCan}
+                          id="TrashCan"
+                        />{" "}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })
+              .slice(pagesVisited, pagesVisited + usersPerPage)
+              : <h4 style={{ marginLeft:'5%' }}>Chưa có dữ liệu</h4>
+              }
             <tr>
               <td colSpan={3}></td>
             </tr>
+
           </tbody>
         </Table>
       </div>

@@ -1,6 +1,31 @@
 .Table {
   position: relative;
   height: 500px;
+  .Filter__ListLink {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 6.5%;
+    margin-bottom: 10px;
+  }
+  .Filter__ListLink button {
+    border-radius: 6px;
+    margin-left: 10px;
+    border: 2px solid #1378c0;
+    width: fit-content;
+    height: 32px;
+    border-radius: 6px;
+    background-color: white;
+    color: #1378c0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .Filter__ListLink button:hover {
+    background-color: #1378c0;
+    color: white;
+  }
+  .Filter__ListLink input {
+    border-radius: 6px;
+    padding-left: 50px;
+  }
   #FormTable {
     display: flex;
     justify-content: center;
@@ -50,6 +75,10 @@
       .iconCopy:hover {
         background-color: #b2beb5;
       }
+      .iconCopy:active{
+        background-color:#acaca9;
+        color:#dfd8cb;
+      }
 
       // .paginationDisabled a {
       //   color: grey;
@@ -65,11 +94,10 @@
     justify-content: right;
     margin-top: 20px;
     user-select: none;
-
   }
   .pagination {
     position: absolute;
-    bottom: 25px;
+    bottom: 0px;
     right: -15px;
     .paginationBttns a {
       text-decoration: none;
@@ -83,13 +111,13 @@
     }
     .paginationBttns :hover a {
       color: white;
-      background-color:#4D91C6;
+      background-color: #4d91c6;
       padding: 15px;
       font-size: 15px;
     }
     .paginationActive a {
       color: white;
-      background-color:#4D91C6;
+      background-color: #4d91c6;
     }
   }
 }

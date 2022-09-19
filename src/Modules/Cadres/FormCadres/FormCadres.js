@@ -5,7 +5,7 @@ import Clock from '../../../Shared/clock/clock';
 import { Button, Col, Row, Container } from 'reactstrap';
 import axios, { Axios } from 'axios';
 function FormCadres(props) {
-  const { onChangeLink, handleButtonMore, link } = props
+  const { onChangeLink, handleButtonMore, link, setValueNameCTV, handleFilter, setValueDepartment, setValueSpecialized } = props
 
   return (
     <div id="cadres">
@@ -16,7 +16,12 @@ function FormCadres(props) {
         <Row xs={12} className='info__cadres'>
           <Col xs={4} className='Name__CVT'>
             <span className='Name'>Tên CTV</span>
-            <select name='NameCTV' onChange={(e) => { onChangeLink(e) }}>
+            <select name='NameCTV' value={link.NameCTV}
+              onClick={handleFilter}
+              onChange={(e) => {
+                onChangeLink(e)
+                setValueNameCTV(e.target.value)
+              }}>
               <option>ALL</option>
               <option>CTV 1</option>
               <option>CTV 2</option>
@@ -27,7 +32,12 @@ function FormCadres(props) {
           </Col>
           <Col xs={4} className='Department'>
             <span className='Name'>Phòng Ban</span>
-            <select name='Department' onChange={(e) => { onChangeLink(e) }}>
+            <select name='Department'
+              onClick={handleFilter}
+              onChange={(e) => {
+                onChangeLink(e)
+                setValueDepartment(e.target.value)
+              }}>
               <option>ALL</option>
               <option>Phòng hành chính</option>
               <option>Phòng nhân sự</option>
@@ -36,7 +46,12 @@ function FormCadres(props) {
           </Col>
           <Col xs={4} className='specialized'>
             <span className='Name'>Chuyên Ngành</span>
-            <select name='Specialized' onChange={(e) => { onChangeLink(e) }}>
+            <select name='Specialized'
+              onClick={handleFilter}
+              onChange={(e) => {
+                onChangeLink(e)
+                setValueSpecialized(e.target.value)
+              }}>
               <option>ALL</option>
               <option>Công nghệ thông tin </option>
               <option>Marketing</option>
