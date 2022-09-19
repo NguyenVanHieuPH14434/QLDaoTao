@@ -10,19 +10,21 @@ import axios from "axios";
 import ReactPaginate from "react-paginate";
 import { library } from "@fortawesome/fontawesome-svg-core";
 function ListLink(props) {
-  const { setLink, link, listInfo, HandleDelete, resListInfo } = props;
+  const { setLink, link, listInfo , setListInfo, HandleDelete } = props;
   const [pageNumber, setPageNumber] = useState(0);
-  const usersPerPage = 7;
+  const usersPerPage = 6;
+  const [data, setData] = useState(listInfo);
   const pagesVisited = pageNumber * usersPerPage;
-  const pageCount = Math.ceil(listInfo.length / usersPerPage
+  const pageCount = Math.ceil( data === [] ?  listInfo.length : data.length / usersPerPage
   );
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+
   const Copylink = (id) => {
     let clipBoard = listInfo[id].linkfb;
     navigator.clipboard.writeText(clipBoard);
-    setLink({ linkfb: "" });
+    setLink({...link, linkfb: "" });
     setTimeout(() => {
       let htmlCopy = document.getElementsByClassName("iconCopy");
       htmlCopy[id].style.color = "black";
@@ -30,6 +32,22 @@ function ListLink(props) {
     let htmlCopy = document.getElementsByClassName("iconCopy");
     htmlCopy[id].style.color = "green";
   };
+  // // console.log(link.NameCTV);
+  useEffect(() => {
+      const results = 
+      listInfo.filter((curData)=>{
+        return curData.NameCTV.includes(link.NameCTV)
+      }).filter((curData)=>{
+        return curData.Department.includes(link.Department)
+      }).filter((curData)=>{
+        return curData.Specialized.includes(link.Specialized)
+      })
+      setData(results);
+      // console.log(results);
+  },[link])
+  // window.location.reload()
+  console.log(data);
+  // console.log(listInfo);
   return (
     <div className="Table">
       <div id="FormTable">
@@ -42,8 +60,49 @@ function ListLink(props) {
             </tr>
           </thead>
           <tbody>
-            {listInfo
-                  .map((item, index) => {
+            {
+              link.NameCTV === '' ? 
+              (listInfo.map((item, index) => {
+                    return (
+                      <tr key={index} className="Row__Table__Link">
+                        <td className="NameLinkFB">
+                          <input
+                            className="NameLink"
+                            value={item.linkfb}
+                            onChange={(e) => {}}
+                            disabled
+                          />
+                          <span
+                            className="iconCopy"
+                            onClick={(e) => {
+                              Copylink(index);
+                            }}
+                          >
+                            {" "}
+                            <FontAwesomeIcon icon={faCopy} id="Copy" />{" "}
+                          </span>
+                        </td>
+                        <td>
+                          <StarRating indexStart />
+                        </td>
+                        <td
+                          className="custom__edit"
+                          onClick={(e) => {
+                            HandleDelete(index);
+                          }}
+                        >
+                          <span>
+                            {" "}
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              id="TrashCan"
+                            />{" "}
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  }))
+              : (data.map((item, index) => {
                     return (
                       <tr key={index} className="Row__Table__Link">
                         <td className="NameLinkFB">
@@ -83,8 +142,9 @@ function ListLink(props) {
                       </tr>
                     );
                   })
+                  
 
-                  .slice(pagesVisited, pagesVisited + usersPerPage)}
+                  ).slice(pagesVisited, pagesVisited + usersPerPage)}
 
             <tr>
               <td colSpan={3}></td>
@@ -108,4 +168,4 @@ function ListLink(props) {
     </div>
   );
 }
-export default memo(ListLink);
+export default ListLink;

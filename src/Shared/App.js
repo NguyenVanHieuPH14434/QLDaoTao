@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       {/* <AppHeader /> */}
       <Routes>
-        {/* <Route path="/" element={<Cadres />} /> */}
+        <Route path={path.HOME} element={<Cadres />} />
         <Route path={path.LOGIN} element={<Login />} />
       </Routes>
     </div>

@@ -19,26 +19,21 @@ function Cadres() {
   };
   const handleButtonMore = () => {
     const valueFB = document.getElementById("More__Link__FB").value;
-     let checkLink = listInfo.filter((item) => item.linkfb === valueFB)
-     console.log();
+    let checkLink = listInfo.filter((item) => item.linkfb === valueFB);
+    console.log();
     if (valueFB === "") {
       alert("Hãy nhập Link FaceBook");
-    } 
-    else if (checkLink[0])
-    {
+    } else if (checkLink[0]) {
       alert("link FaceBook đã tồn tại");
-    }
-    else {
+    } else {
       axios
         .post("http://localhost:8080/api/customer/create", link)
         .then((res) => {
-          setListInfo([link ,...listInfo]);
-          // console.log(res);
+          setListInfo([...listInfo, link]);
         })
         .catch((err) => console.log(err));
     }
-    setLink({ NameCTV: ""});
-    
+    setLink({ NameCTV: "", Department: "", Specialized: "", linkfb: "" });
   };
 
   // get data
@@ -51,7 +46,7 @@ function Cadres() {
       .catch((err) => console.log(err));
   }, []);
   // custom edit (xóa)
-//   console.log(listInfo);
+  //   console.log(listInfo);
   const HandleDelete = async (id) => {
     // console.log(listInfo[id]._id);
     await axios
@@ -67,12 +62,12 @@ function Cadres() {
   };
 
   //   search
-  useEffect(() => {
-    setResListInfo(
-        listInfo.filter((item) => item.NameCTV ===  link.NameCTV)
-    )
-  }, [link]);
-  // console.log(resListInfo);
+  // console.log(link);
+  // const filterResult = (value) => {
+  //   const results = listInfo.filter((curData) => {
+  //     return curData.listInfo === value
+  //   })
+  // };
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div
@@ -89,9 +84,12 @@ function Cadres() {
           onChangeLink={onChangeLink}
           handleButtonMore={handleButtonMore}
           link={link}
+          // filterResult={filterResult}
         />
         <ListLink
-         resListInfo={resListInfo}
+          link={link}
+          // setListInfo={setListInfo}
+          resListInfo={resListInfo}
           HandleDelete={HandleDelete}
           listInfo={listInfo}
           openTableLink={openTableLink}

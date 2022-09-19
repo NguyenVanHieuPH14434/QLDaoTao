@@ -2,5 +2,6 @@ export const path = {
     HOME: '/',
     LOGIN: '/login',
     LOGOUT: '/logout',
-    CADRE: '/cadre'
+    CADRE: '/cadre',
+    LAYOUT: '/layout'
 }
