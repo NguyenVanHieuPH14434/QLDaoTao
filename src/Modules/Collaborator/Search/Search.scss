@@ -1,0 +1,43 @@
+.container-1{
+    width: 300px;
+    margin-left: 30px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+  }
+  .container-1 input#search{
+    width: 500px;
+    height: 50px;
+    background: #CCCCCC;
+    border: solid 1px #CCCCCC;
+    font-size: 10pt;
+    float: left;
+    color: #CCCCCC;
+    padding-left: 45px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  .container-1 input#search::-webkit-input-placeholder {
+    color: #222222;
+ }
+  
+ .container-1 input#search:-moz-placeholder { /* Firefox 18- */
+    color: #222222;  
+ }
+  
+ .container-1 input#search::-moz-placeholder {  /* Firefox 19+ */
+    color: #222222;  
+ }
+  
+ .container-1 input#search:-ms-input-placeholder {  
+    color: #222222;  
+ }
+ .container-1 .icon{
+    position: absolute;
+    top: 50%;
+    margin-left: 17px;
+    margin-top: 13px;
+    z-index: 1;
+    color: #222222;
+  }

@@ -1,7 +1,8 @@
 export const path = {
-    HOME: '/',
+    HOME : '/',
     LOGIN: '/login',
     LOGOUT: '/logout',
     CADRE: '/cadre',
-    LAYOUT: '/layout'
+    LAYOUT: '/layout',
+    COLLABORATOR: '/themctv'
 }

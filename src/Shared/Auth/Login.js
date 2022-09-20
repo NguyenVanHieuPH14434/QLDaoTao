@@ -1,13 +1,12 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState , useEffect } from "react";
 import axios from 'axios';
 import { connect } from 'react-redux';
 // import { push } from "connected-react-router";
 import "./login.scss";
-import * as actions from "../actions"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+
 function Login() {
-  
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -18,26 +17,31 @@ function Login() {
     const value = e.target.value;
     setUser({ ...user, [name]: value });
   };
+  useEffect(() => {
+      axios.get('http://localhost:8080/api/auth/user/list')
+      .then((res) => {
+        // console.log(res.data[0].password);  
+      })
+      .catch((err) => console.log(err));
+  },[])
   const [errorMessage , setErrorMessage] = useState("")
-  console.log(user);
+  // console.log(user);
   const handleLogin = async () => {
     setErrorMessage("")
-    // try {
-    //     if ((user.username === admin.username && user.password === admin.password))  throw ""
-    //     if ((user.username !== admin.username) || user.password !== admin.password )  throw "đăng nhập thất bại"
-    //   } catch (err) {
-    //       setErrorMessage(err)
-    //   }
-      
-    // }
     try {
       if(user.username === '' && user.password === '') throw "Chưa nhập thông tin tài khoản mật khẩu"
       if(user.username === '') throw "Chưa nhập tài khoản"
       if(user.password === '') throw "Chưa nhập mật khẩu"
-      await axios.post('http://localhost:8080/api/auth/login' , user);
+      await axios.post('http://localhost:8080/api/auth/login' , user)
+      .then(function(res) {
+        console.log(res.data.data.roles);
+        
+      })
+      .catch(res=>console.log(res.message))
     }
     catch (err) {
       setErrorMessage(err)
+      console.log('loi' , err);
     }
   }
   const handleViewPassword = () => {

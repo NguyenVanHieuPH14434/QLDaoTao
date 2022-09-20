@@ -1,14 +1,14 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect} from "react";
 import "./List_link.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faCopy } from "@fortawesome/free-regular-svg-icons";
 import StarRating from "../../../Shared/StarRating/StarRating";
-import axios from "axios";
+// import axios from "axios";
 // import { Pagination, PaginationItem, PaginationLink } from "reactstrap"
 import ReactPaginate from "react-paginate";
-import { library } from "@fortawesome/fontawesome-svg-core";
+// import { library } from "@fortawesome/fontawesome-svg-core";
 function ListLink(props) {
   const { setLink, link, listInfo , setListInfo, HandleDelete } = props;
   const [pageNumber, setPageNumber] = useState(0);
@@ -33,6 +33,8 @@ function ListLink(props) {
     htmlCopy[id].style.color = "green";
   };
   // // console.log(link.NameCTV);
+  console.log(link.NameCTV);
+  console.log(listInfo);
   useEffect(() => {
       const results = 
       listInfo.filter((curData)=>{
@@ -45,8 +47,9 @@ function ListLink(props) {
       setData(results);
       // console.log(results);
   },[link])
+  
   // window.location.reload()
-  console.log(data);
+  // console.log(data);
   // console.log(listInfo);
   return (
     <div className="Table">
