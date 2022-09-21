@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Row, Col } f
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 function Example(prop) {
-   const {toggle ,modal,handleValue,infoCTV , handleAdd,check, handleUpdate} = prop
+   const {toggle ,modal,handleValue,infoCTV , handleAdd,check, handleUpdate, handleClose} = prop
 
     return (
         <div style={{marginRight:'50px'}}>
@@ -11,7 +11,7 @@ function Example(prop) {
                 <FontAwesomeIcon icon={faCirclePlus} /> Thêm mới
             </Button>
             <Modal isOpen={modal} toggle={toggle} >
-                <ModalHeader color="primary" toggle={toggle}>Thêm mới CTV</ModalHeader>
+                <ModalHeader color="primary" onClick={handleClose}>Thêm mới CTV</ModalHeader>
                 <ModalBody>
                     <Row>
                         <Col>
@@ -89,7 +89,7 @@ function Example(prop) {
                     
                    ( <Button color="primary"  onClick={handleAdd}>ADD</Button>)  
                 }
-                    <Button color="secondary" toggle={toggle}>
+                    <Button color="secondary" onClick={handleClose} >
                         Cancel
                     </Button>
                 </ModalFooter>

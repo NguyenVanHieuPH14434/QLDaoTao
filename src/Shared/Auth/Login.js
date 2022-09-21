@@ -1,51 +1,58 @@
-import React, { memo, useState , useEffect } from "react";
-import axios from 'axios';
-import { connect } from 'react-redux';
+import React, { memo, useState, useEffect } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
 // import { push } from "connected-react-router";
 import "./login.scss";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 function Login() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
-  const [isShow , setIsShow] = useState(false)
+  const [isShow, setIsShow] = useState(false);
   const onChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setUser({ ...user, [name]: value });
   };
   useEffect(() => {
-      axios.get('http://localhost:8080/api/auth/user/list')
+    axios
+      .get("http://localhost:8080/api/auth/user/list")
       .then((res) => {
-        // console.log(res.data[0].password);  
+        // console.log(res.data[0].password);
       })
       .catch((err) => console.log(err));
-  },[])
-  const [errorMessage , setErrorMessage] = useState("")
+  }, []);
+  const [errorMessage, setErrorMessage] = useState("");
   // console.log(user);
   const handleLogin = async () => {
-    setErrorMessage("")
+    setErrorMessage("");
     try {
-      if(user.username === '' && user.password === '') throw "Chưa nhập thông tin tài khoản mật khẩu"
-      if(user.username === '') throw "Chưa nhập tài khoản"
-      if(user.password === '') throw "Chưa nhập mật khẩu"
-      await axios.post('http://localhost:8080/api/auth/login' , user)
-      .then(function(res) {
-        console.log(res.data.data.roles);
-        
-      })
-      .catch(res=>console.log(res.message))
+      if (user.username === "" && user.password === "")
+        throw "Chưa nhập thông tin tài khoản mật khẩu";
+      if (user.username === "") throw "Chưa nhập tài khoản";
+      if (user.password === "") throw "Chưa nhập mật khẩu";
+      await axios
+        .post("http://localhost:8080/api/auth/login", user)
+        .then(function (res) {
+          console.log(res.data.data);
+        res.data.data.roles ?  localStorage.setItem("user", JSON.stringify(res.data.data))
+          : localStorage.setItem("user","")
+          navigate("/");
+          window.location.reload(); 
+        })
+        .catch((res) => setErrorMessage('Thông tin đăng nhập không đúng'));
+    } catch (err) {
+      setErrorMessage(err);
+      console.log("loi", err);
     }
-    catch (err) {
-      setErrorMessage(err)
-      console.log('loi' , err);
-    }
-  }
+  };
   const handleViewPassword = () => {
-    setIsShow(!isShow)
+    setIsShow(!isShow);
   };
   return (
     <div className="login-background">
@@ -81,7 +88,7 @@ function Login() {
               <FontAwesomeIcon icon={faEyeSlash} />
             </span>
           </div>
-          <div className="col-12" style={{color: 'red' , fontSize: "13px"}}>
+          <div className="col-12" style={{ color: "red", fontSize: "13px" }}>
             {errorMessage}
           </div>
           <div className="col-12">

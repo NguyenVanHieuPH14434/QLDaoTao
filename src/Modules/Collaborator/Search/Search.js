@@ -1,6 +1,6 @@
 import React from "react";
 import "../Search/Search.scss"
-// import 'font-awesome/css/font-awesome.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 function Search() {
     return (
         <>

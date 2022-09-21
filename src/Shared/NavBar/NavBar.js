@@ -1,28 +1,111 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+// import { useState } from "react";
+// import { Link } from "react-router-dom";
+// import "./Navbar.scss";
+// function Navbar() {
+//   const handleLogout = () => {
+//     localStorage.clear();
+//     window.location.reload();
+//   };
+//   const user = JSON.parse(localStorage.getItem("user"));
+//   const roles = user ? user.roles.toString() : "";
+//   return (
+//     <nav className="navbar-container">
+//       {user ? (
+//         <>
+//           {roles === "CTV" ? (
+//             <div>
+//               <Link to="/">Home </Link>
+//               <Link to="/collaborator">Quản lý cộng tác viên </Link>
+//             </div>
+//           ) : (
+//             <div>
+//               <Link to="/">Home</Link>
+//             </div>
+//           )}
+//           <button onClick={handleLogout}>logout</button>
+//         </>
+//       ) : (
+//         <></>
+//       )}
+//     </nav>
+//   );
+// }
+
+// export default Navbar;
+
+import React from "react";
+import { Row, Col } from "reactstrap";
+// import '../NavBar/NavBar.scss'
+import logo from "../../Assets/img/logo.png";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.scss";
-function Navbar() {
-  const [user, SetUser] = useState(null);
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+
+function NavBar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+    window.location.reload();
+  };
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
+  const roles = user ? user.roles.toString() : "";
   return (
-    <nav className="navbar-container">
-      <Link to="/"> Home </Link>
+    <div className="navbar-container">
       {user ? (
-        <>
-          <p className="navbar-user">
-            {" "}
-            hi,
-            <span> {user} </span>
-          </p>
-          <Link to="/logout"> Logout </Link>
-        </>
+        <div className="NavBar">
+          <Row className="Row_NavBar">
+            <Col className="logo">
+              <img src={logo} />
+              <a>QUẢN LÝ ĐÀO TẠO</a>
+              <div className="link-wrap">
+                {roles === "QTV" ? (
+                  <div>
+                    <button className="btn btn-link">
+                      <Link to="/">Home </Link>
+                    </button>
+                    <button className="btn btn-link">
+                      <Link to="/collaborator">Quản lý cộng tác viên </Link>
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    <button className="btn btn-link">
+                      <Link to="/" className="link">Home</Link>
+                    </button>
+                  </div>
+                )}
+              </div>
+            </Col>
+            <Col
+              className="btn-login"
+              style={{
+                display: "flex",
+                justifyContent: "right",
+                marginRight: "30px",
+                height: "50px",
+              }}
+            >
+              <button
+                type="button"
+                className="btn btn-outline-primary ms-auto"
+                data-bs-toggle="modal"
+                onClick={handleLogout}
+                data-bs-target="#loginModal"
+              >
+                <FontAwesomeIcon icon={faRightFromBracket} />
+                Đăng xuất
+              </button>
+            </Col>
+          </Row>
+        </div>
       ) : (
-        <>
-          <Link to="/login"> Login </Link>
-          <Link to="/register"> Register </Link>
-        </>
+        <div></div>
       )}
-    </nav>
+    </div>
   );
 }
-
-export default Navbar;
+export default NavBar;

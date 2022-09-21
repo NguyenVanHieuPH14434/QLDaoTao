@@ -19,21 +19,27 @@ function Cadres() {
   };
   const handleButtonMore = () => {
     const valueFB = document.getElementById("More__Link__FB").value;
-    let checkLink = listInfo.filter((item) => item.linkfb === valueFB);
-    console.log();
-    if (valueFB === "") {
-      alert("Hãy nhập Link FaceBook");
-    } else if (checkLink[0]) {
-      alert("link FaceBook đã tồn tại");
+    // let checkLink = listInfo.filter((item) => item.linkfb === valueFB);
+
+    if (
+      valueFB === "" ||
+      link.NameCTV === "" ||
+      link.Department === "" ||
+      link.Specialized === ""
+    ) {
+      alert("Vui lòng nhập đủ thông tin");
+    } else if (listInfo.filter((item) => item.linkfb.includes(link.linkfb))) {
+      setLink({ NameCTV: "", Department: "", Specialized: "", linkfb: "" });
+      return alert("Facebook đã tồn tại");
     } else {
       axios
         .post("http://localhost:8080/api/customer/create", link)
         .then((res) => {
           setListInfo([...listInfo, link]);
+          setLink({ NameCTV: "", Department: "", Specialized: "", linkfb: "" });
         })
         .catch((err) => console.log(err));
     }
-    setLink({ NameCTV: "", Department: "", Specialized: "", linkfb: "" });
   };
 
   // get data
@@ -60,14 +66,6 @@ function Cadres() {
       })
       .catch((err) => console.log(err));
   };
-
-  //   search
-  // console.log(link);
-  // const filterResult = (value) => {
-  //   const results = listInfo.filter((curData) => {
-  //     return curData.listInfo === value
-  //   })
-  // };
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div

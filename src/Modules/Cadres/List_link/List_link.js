@@ -12,15 +12,16 @@ import ReactPaginate from "react-paginate";
 function ListLink(props) {
   const { setLink, link, listInfo , setListInfo, HandleDelete } = props;
   const [pageNumber, setPageNumber] = useState(0);
-  const usersPerPage = 6;
-  const [data, setData] = useState(listInfo);
+  const usersPerPage = 7;
+  const [data, setData] = useState([]);
   const pagesVisited = pageNumber * usersPerPage;
-  const pageCount = Math.ceil( data === [] ?  listInfo.length : data.length / usersPerPage
+  const pageCount = Math.ceil( data[0]  ?    (data.length / usersPerPage) : (listInfo.length /usersPerPage) 
   );
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-
+  // console.log(data);
+  // console.log(listInfo);
   const Copylink = (id) => {
     let clipBoard = listInfo[id].linkfb;
     navigator.clipboard.writeText(clipBoard);
@@ -33,8 +34,8 @@ function ListLink(props) {
     htmlCopy[id].style.color = "green";
   };
   // // console.log(link.NameCTV);
-  console.log(link.NameCTV);
-  console.log(listInfo);
+  // console.log(link.NameCTV);
+  // console.log(listInfo);
   useEffect(() => {
       const results = 
       listInfo.filter((curData)=>{
@@ -64,7 +65,7 @@ function ListLink(props) {
           </thead>
           <tbody>
             {
-              link.NameCTV === '' ? 
+              link.NameCTV === '' && link.Department === '' && link.Specialized === '' ? 
               (listInfo.map((item, index) => {
                     return (
                       <tr key={index} className="Row__Table__Link">
@@ -105,6 +106,8 @@ function ListLink(props) {
                       </tr>
                     );
                   }))
+                  .slice(pagesVisited, pagesVisited + usersPerPage)
+
               : (data.map((item, index) => {
                     return (
                       <tr key={index} className="Row__Table__Link">
