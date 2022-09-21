@@ -1,12 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./FormCadres.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Clock from "../../../Shared/clock/clock";
 import { Button, Col, Row, Container } from "reactstrap";
 import axios, { Axios } from "axios";
 function FormCadres(props) {
-  const { onChangeLink, handleButtonMore, link } = props;
- 
+  const { onChangeLink, handleButtonMore, link, listInfo } = props;
+  const user = JSON.parse(localStorage.getItem("user"));
+  // console.log(user);
+  const [listCTV, setListCTV] = useState([]);
+  const roles = user ? user.roles.toString() : "";
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/auth/user/list")
+      .then((res) => {
+        setListCTV(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  // console.log(listCTV);
+  // console.log(link);
   return (
     <div id="cadres">
       <div className="customer__care">Chăm sóc khác hàng</div>
@@ -18,21 +31,23 @@ function FormCadres(props) {
         <Row xs={12} className="info__cadres">
           <Col xs={4} className="Name__CVT">
             <span className="Name">Tên CTV</span>
-            <select
-              name="NameCTV"
-              id="selectNameCTV"
-              onChange={(e) => {
-                onChangeLink(e);
-              }}
-              value={link.NameCTV}
-            >
-              <option></option>
-              <option>CTV 1</option>
-              <option>CTV 2</option>
-              <option>CTV 3</option>
-              <option>CTV 4</option>
-              <option>CTV 5</option>
-            </select>
+            {roles === "CTV" ? (
+              <input className="input" name="NameCTV" value={user.full_name} />
+            ) : (
+              <select
+                name="NameCTV"
+                id="selectNameCTV"
+                onChange={(e) => {
+                  onChangeLink(e);
+                }}
+                value={link.NameCTV}
+              >
+                <option></option>
+                {listCTV.map((item) => {
+                  return <option>{item.full_name}</option>;
+                })}
+              </select>
+            )}
           </Col>
           <Col xs={4} className="Department">
             <span className="Name">Phòng Ban</span>

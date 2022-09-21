@@ -11,16 +11,19 @@ function Cadres() {
     Specialized: "",
     linkfb: "",
   });
+  // console.log(link);
+  // console.log(listInfo);
   const [resListInfo, setResListInfo] = useState([]);
   const onChangeLink = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setLink({ ...link, [name]: value });
   };
+  // console.log((listInfo.filter((item) => item.linkfb.includes(link.linkfb))))
   const handleButtonMore = () => {
     const valueFB = document.getElementById("More__Link__FB").value;
     // let checkLink = listInfo.filter((item) => item.linkfb === valueFB);
-
+    console.log(link.NameCTV);
     if (
       valueFB === "" ||
       link.NameCTV === "" ||
@@ -28,7 +31,7 @@ function Cadres() {
       link.Specialized === ""
     ) {
       alert("Vui lòng nhập đủ thông tin");
-    } else if (listInfo.filter((item) => item.linkfb.includes(link.linkfb))) {
+    } else if (listInfo.filter((item) => item.linkfb.includes(link.linkfb)) === [] ) {
       setLink({ NameCTV: "", Department: "", Specialized: "", linkfb: "" });
       return alert("Facebook đã tồn tại");
     } else {
@@ -82,6 +85,7 @@ function Cadres() {
           onChangeLink={onChangeLink}
           handleButtonMore={handleButtonMore}
           link={link}
+          listInfo={listInfo}
           // filterResult={filterResult}
         />
         <ListLink

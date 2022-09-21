@@ -1,37 +1,3 @@
-// import { useState } from "react";
-// import { Link } from "react-router-dom";
-// import "./Navbar.scss";
-// function Navbar() {
-//   const handleLogout = () => {
-//     localStorage.clear();
-//     window.location.reload();
-//   };
-//   const user = JSON.parse(localStorage.getItem("user"));
-//   const roles = user ? user.roles.toString() : "";
-//   return (
-//     <nav className="navbar-container">
-//       {user ? (
-//         <>
-//           {roles === "CTV" ? (
-//             <div>
-//               <Link to="/">Home </Link>
-//               <Link to="/collaborator">Quản lý cộng tác viên </Link>
-//             </div>
-//           ) : (
-//             <div>
-//               <Link to="/">Home</Link>
-//             </div>
-//           )}
-//           <button onClick={handleLogout}>logout</button>
-//         </>
-//       ) : (
-//         <></>
-//       )}
-//     </nav>
-//   );
-// }
-
-// export default Navbar;
 
 import React from "react";
 import { Row, Col } from "reactstrap";
@@ -51,7 +17,6 @@ function NavBar() {
     window.location.reload();
   };
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
   const roles = user ? user.roles.toString() : "";
   return (
     <div className="navbar-container">

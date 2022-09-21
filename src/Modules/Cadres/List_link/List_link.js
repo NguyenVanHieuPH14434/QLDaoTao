@@ -5,6 +5,8 @@ import { Table } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faCopy } from "@fortawesome/free-regular-svg-icons";
 import StarRating from "../../../Shared/StarRating/StarRating";
+import axios from "axios";
+
 // import axios from "axios";
 // import { Pagination, PaginationItem, PaginationLink } from "reactstrap"
 import ReactPaginate from "react-paginate";
@@ -20,6 +22,14 @@ function ListLink(props) {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8080/api/customer/list")
+  //     .then((res) => {
+  //       setListInfo(res.data.docs);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
   // console.log(data);
   // console.log(listInfo);
   const Copylink = (id) => {
@@ -33,25 +43,23 @@ function ListLink(props) {
     let htmlCopy = document.getElementsByClassName("iconCopy");
     htmlCopy[id].style.color = "green";
   };
-  // // console.log(link.NameCTV);
-  // console.log(link.NameCTV);
-  // console.log(listInfo);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const roles = user ? user.roles.toString() : "";
+  // console.log(user.full_name);
+  const filterResult = listInfo.filter((curData)=>{
+    return curData.NameCTV.includes(roles === 'CTV' ? user.full_name :  link.NameCTV)
+  })
   useEffect(() => {
-      const results = 
-      listInfo.filter((curData)=>{
-        return curData.NameCTV.includes(link.NameCTV)
-      }).filter((curData)=>{
-        return curData.Department.includes(link.Department)
-      }).filter((curData)=>{
-        return curData.Specialized.includes(link.Specialized)
-      })
-      setData(results);
-      // console.log(results);
-  },[link])
-  
-  // window.location.reload()
-  // console.log(data);
-  // console.log(listInfo);
+    const results = filterResult
+    .filter((curData)=>{
+      return curData.Department.includes(link.Department)
+    }).filter((curData)=>{
+      return curData.Specialized.includes(link.Specialized)
+    })
+    setData(results);
+    // console.log(results);
+    console.log(data);
+},[link])
   return (
     <div className="Table">
       <div id="FormTable">
@@ -64,8 +72,8 @@ function ListLink(props) {
             </tr>
           </thead>
           <tbody>
-            {
-              link.NameCTV === '' && link.Department === '' && link.Specialized === '' ? 
+            { 
+           roles === "QTV" &&  link.NameCTV === '' && link.Department === '' && link.Specialized === '' ? 
               (listInfo.map((item, index) => {
                     return (
                       <tr key={index} className="Row__Table__Link">
@@ -107,7 +115,6 @@ function ListLink(props) {
                     );
                   }))
                   .slice(pagesVisited, pagesVisited + usersPerPage)
-
               : (data.map((item, index) => {
                     return (
                       <tr key={index} className="Row__Table__Link">
@@ -147,10 +154,8 @@ function ListLink(props) {
                         </td>
                       </tr>
                     );
-                  })
-                  
-
-                  ).slice(pagesVisited, pagesVisited + usersPerPage)}
+                  })).slice(pagesVisited, pagesVisited + usersPerPage)    
+            }
 
             <tr>
               <td colSpan={3}></td>

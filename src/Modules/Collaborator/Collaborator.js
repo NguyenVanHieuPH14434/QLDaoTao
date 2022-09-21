@@ -33,8 +33,6 @@ function Collaborator() {
         axios.get('http://localhost:8080/api/auth/user/list')
             .then(res => {
                 setListInfoCTV(res.data)
-
-
             })
             .catch(err => console.log(err))
     }, [checkEdit])
