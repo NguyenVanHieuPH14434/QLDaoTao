@@ -11,22 +11,32 @@ function Cadres() {
     Specialized: "",
     linkfb: "",
   });
+  const user = JSON.parse(localStorage.getItem("user"));
+  const roles = user ? user.roles.toString() : "";
   // console.log(link);
   // console.log(listInfo);
+  // console.log(roles);
+
   const [resListInfo, setResListInfo] = useState([]);
   const onChangeLink = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setLink({ ...link, [name]: value });
   };
-  // console.log((listInfo.filter((item) => item.linkfb.includes(link.linkfb))))
   const handleButtonMore = () => {
     const valueFB = document.getElementById("More__Link__FB").value;
-    // let checkLink = listInfo.filter((item) => item.linkfb === valueFB);
-    console.log(link.NameCTV);
+    // if(roles === "CTV"){
+    //     setLink({ ...link, NameCTV : user.full_name})
+    // console.log(link.NameCTV);
+    //     console.log("yess");
+    // }else{
+    //   console.log("khong phair");
+    // }
+    setLink({...link, NameCTV : user.full_name});
+    // roles === "CTV" ? setLink({...link, NameCTV : user.full_name}) : link.NameCTV ;
     if (
       valueFB === "" ||
-      link.NameCTV === "" ||
+      // link.NameCTV === "" ||
       link.Department === "" ||
       link.Specialized === ""
     ) {

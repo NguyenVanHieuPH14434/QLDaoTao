@@ -58,7 +58,7 @@ function ListLink(props) {
     })
     setData(results);
     // console.log(results);
-    console.log(data);
+    // console.log(data);
 },[link])
   return (
     <div className="Table">
