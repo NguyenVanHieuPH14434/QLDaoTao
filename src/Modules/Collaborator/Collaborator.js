@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal_CTV from '../Collaborator/Modal_CTV/Modal_CTV'
 import Table_CTV from '../Collaborator/Table_CTV/Table_CTV'
 import Search from "./Search/Search";
+import Clock from "../../Shared/clock/clock"
 import axios from 'axios'
 import { Row, Col } from 'reactstrap'
 function Collaborator() {
@@ -116,9 +117,21 @@ function Collaborator() {
     }
     return (
         <>
-            <div >
+            <div  style={{
+          minHeight: "660px",
+          marginTop: "50px",
+          border: "1px solid rgb(167, 164, 164)",
+          minWidth: " 90vw",
+          borderRadius: "8px",
+          boxShadow: "rgb(167 164 164) -1px -3px 20px 0px",
+          marginLeft:'30px',
+          marginRight:'30px'
+        }} >
 
                 <h3 style={{ textAlign: 'center', color: 'blue', marginTop: '50px' }}>QUẢN LÝ CỘNG TÁC VIÊN</h3>
+                <div style={{ width: '80%',margin: '0 auto', border: '1px solid rgb(168, 163, 163)',
+                marginTop:'20px', marginBottom:'20px'}}></div>
+                <div style={{textAlign:"center" ,}}><Clock/></div>
                 <div style={{ marginTop: '50px' }}>
                     <Row >
 
@@ -136,7 +149,7 @@ function Collaborator() {
                     </Row>
                 </div>
 
-                <div style={{ marginLeft: '30px', marginRight: '30px', marginTop: "50px" }}>
+                <div style={{ marginLeft: '50px', marginRight: '50px', marginTop: "20px" }}>
 
                     <Table_CTV listInfoCTV={listInfoCTV} handleDelete={handleDelete} edit={edit} 
                     

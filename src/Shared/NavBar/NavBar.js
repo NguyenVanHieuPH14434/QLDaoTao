@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Row, Col } from "reactstrap";
 // import '../NavBar/NavBar.scss'
@@ -25,15 +24,19 @@ function NavBar() {
           <Row className="Row_NavBar">
             <Col className="logo">
               <img src={logo} />
-              <a>QUẢN LÝ ĐÀO TẠO</a>
+              
               <div className="link-wrap">
                 {roles === "QTV" ? (
                   <div>
-                    <button className="btn btn-link">
-                      <Link to="/">Home </Link>
+                    <button className="btn btn-link" >
+                      <Link to="/" className="link" >
+                        HOME 
+                      </Link>
                     </button>
                     <button className="btn btn-link">
-                      <Link to="/collaborator">Quản lý cộng tác viên </Link>
+                      <Link to="/collaborator" className="link" >
+                        QUẢN LÝ CỘNG TÁC VIÊN 
+                        </Link>
                     </button>
                   </div>
                 ) : (

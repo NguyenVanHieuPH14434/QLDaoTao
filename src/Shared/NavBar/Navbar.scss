@@ -1,7 +1,7 @@
 .NavBar{
 
     .Row_NavBar{
-        width: 100%;
+        width: 1362px;
         height: 70px;
         margin-top:20px;
         border-radius: 10px;
@@ -16,14 +16,20 @@
             img{
                 width: 15%; height:60px; margin-left: 30px;
             }
-            a{
-                color: red;
-                font-weight: 600;
-                font-size: 20px;
-                font-family: "Comic Sans MS", cursive, sans-serif;
-            }
+            // a{
+            //     color: red;
+            //     font-weight: 600;
+            //     font-size: 20px;
+            //     font-family: "Comic Sans MS", cursive, sans-serif;
+            // }/
             .link-wrap {
                 .btn-link {
+                    margin-left: 50px;
+                    margin-top: 10px;
+                    font-weight: 500;
+                    font-size: 20px;
+                    background: #FFFF;
+                    font-family: "Comic Sans MS", cursive, sans-serif;
                     border: 1px solid #000 ;
                     .link{
                     text-decoration: none;
