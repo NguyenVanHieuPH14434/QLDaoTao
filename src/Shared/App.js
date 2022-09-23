@@ -10,6 +10,8 @@ import Collaborator from "../Modules/Collaborator/Collaborator";
 function App() {
 
   const user = JSON.parse(localStorage.getItem("user"));
+  const roles = user ? user.roles.toString() : "";
+
   console.log(user);
   return (
     <Router>
@@ -17,8 +19,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={ user ? <Cadres /> : <Login/>} />
-
-          <Route path="/collaborator" element={<Collaborator />} />
+          <Route path="/collaborator" element={ roles === "QTV" ? <Collaborator />: <Cadres />} />
         </Routes>
       </div>
     </Router>
